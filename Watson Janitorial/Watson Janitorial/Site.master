@@ -1,0 +1,66 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeFile="Site.master.vb" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Watson Janitorials</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+    <form runat="server">
+
+<style>
+    body {background-color: rgb(0, 255, 0)}
+</style>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container" style="font-size: x-large; background-color: #FFFFFF; color: #000000;">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/Home">Home</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/ServiceArea">Service Area</a></li>
+                        <li><a runat="server" href="~/Careers">Careers</a></li>
+                        <li><a runat="server" href="~/Prices">Prices</a></li>
+                        <li><a runat="server" href="~/FindOutCost">Find Out the Cost</a></li>
+                        <li><a runat="server" href="~/RequestTeam">Request A Team</a></li>
+                        <li><a runat="server" href="~/Contact">Contact Us</a></li>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">                               
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>!</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+                </div>
+        </div>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Watson Janitorial</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
